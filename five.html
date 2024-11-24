@@ -1,0 +1,68 @@
+import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+class OtpVerificationScreen extends StatefulWidget {
+  final String verificationId;
+
+  OtpVerificationScreen({required this.verificationId});
+
+  @override
+  _OtpVerificationScreenState createState() => _OtpVerificationScreenState();
+}
+
+class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
+  final TextEditingController _otpController = TextEditingController();
+
+  void _verifyOtp() async {
+    String otp = _otpController.text.trim();
+    try {
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: widget.verificationId,
+        smsCode: otp,
+      );
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithCredential(credential);
+
+      // Check if user exists in Firestore
+      bool userExists = await _checkUserInDatabase(userCredential.user!.uid);
+
+      if (userExists) {
+        Navigator.pushReplacementNamed(context, '/landingPage');
+      } else {
+        Navigator.pushReplacementNamed(context, '/registrationPage');
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Invalid OTP')));
+    }
+  }
+
+  Future<bool> _checkUserInDatabase(String uid) async {
+    // Example Firestore call
+    final userDoc = await FirebaseFirestore.instance.collection('users').doc(uid).get();
+    return userDoc.exists;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('OTP Verification')),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            TextField(
+              controller: _otpController,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(labelText: 'Enter OTP'),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: _verifyOtp,
+              child: Text('Verify OTP'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

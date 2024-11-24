@@ -1,0 +1,10 @@
+void main() {
+  runApp(MaterialApp(
+    initialRoute: '/',
+    routes: {
+      '/': (context) => PhoneInputScreen(),
+      '/landingPage': (context) => LandingPage(),
+      '/registrationPage': (context) => RegistrationScreen(),
+    },
+  ));
+}

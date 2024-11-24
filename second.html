@@ -1,0 +1,88 @@
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: TextField(
+          decoration: InputDecoration(
+            hintText: 'Search here',
+            prefixIcon: Icon(Icons.search),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+          ),
+        ),
+        actions: [
+          IconButton(icon: Icon(Icons.notifications), onPressed: () {}),
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Banner Section
+            Container(
+              color: Colors.blue[100],
+              padding: EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  Text('KYC Pending', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  SizedBox(height: 8),
+                  Text('You need to provide the required documents for account activation.'),
+                  ElevatedButton(onPressed: () {}, child: Text('Click Here')),
+                ],
+              ),
+            ),
+            // Categories Section
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  CategoryIcon(label: 'Mobile', icon: Icons.phone_android),
+                  CategoryIcon(label: 'Laptop', icon: Icons.laptop),
+                  CategoryIcon(label: 'Camera', icon: Icons.camera_alt),
+                  CategoryIcon(label: 'LED', icon: Icons.tv),
+                ],
+              ),
+            ),
+            // Exclusive Products Section
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text('EXCLUSIVE FOR YOU', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            ),
+            ProductList(),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.category), label: 'Categories'),
+          BottomNavigationBarItem(icon: Icon(Icons.local_offer), label: 'Deals'),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: 'Cart'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        ],
+      ),
+    );
+  }
+}
+
+class CategoryIcon extends StatelessWidget {
+  final String label;
+  final IconData icon;
+
+  CategoryIcon({required this.label, required this.icon});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        CircleAvatar(
+          radius: 30,
+          child: Icon(icon, size: 30),
+        ),
+        SizedBox(height: 8),
+        Text(label),
+      ],
+    );
+  }
+}
