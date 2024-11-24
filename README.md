@@ -1,5 +1,5 @@
 # Flutter-Developer-Machine-Test
-[10:50 AM, 11/24/2024] 😀: class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +26,7 @@
     );
   }
 }
-[10:51 AM, 11/24/2024] 😀: class HomePage extends StatelessWidget {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +51,7 @@
               color: Colors.blue[100],
               padding: EdgeInsets.all(16),
 …
-[10:51 AM, 11/24/2024] 😀: class ProductList extends StatelessWidget {
+class ProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -84,11 +84,11 @@ class ProductCard extends StatelessWidget {
   final String imagePath;
 
   ProductCard(…
-[11:20 AM, 11/24/2024] 😀: dependencies:
+dependencies:
   firebase_auth: ^4.7.2
   cloud_firestore: ^5.5.1
   provider: ^6.1.5
-[11:20 AM, 11/24/2024] 😀: import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class PhoneInputScreen extends StatefulWidget {
@@ -108,7 +108,7 @@ class _PhoneInputScreenState extends State<PhoneInputScreen> {
       },
       verificationFailed: (FirebaseAuthException e) {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e…
-[11:20 AM, 11/24/2024] 😀: import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class OtpVerificationScreen extends StatefulWidget {
@@ -132,7 +132,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
       );
       UserCredential userCredential =
           await FirebaseAu…
-[11:21 AM, 11/24/2024] 😀: import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 class RegistrationScreen extends StatelessWidget {
   @override
@@ -163,7 +163,7 @@ class RegistrationScreen extends StatelessWidget {
     );
   }
 }
-[11:21 AM, 11/24/2024] 😀: void main() {
+void main() {
   runApp(MaterialApp(
     initialRoute: '/',
     routes: {
